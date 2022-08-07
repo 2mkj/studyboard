@@ -1,0 +1,112 @@
+* 버전확인
+  http://tomcat.apache.org/whichversion.html
+
+*톰캣 다운로드 및 설치
+  1. 완쪽 Download 에서  Tomcat 9 선택
+
+  2. 9.0.64 
+
+     Core
+         32-bit/64bit Windows Service Installer(pgp, sha512) 클릭 
+
+  3. apache-tomcat-9.0.64.exe 실행
+     -> Next 
+     -> I Agree
+     -> Next
+     -> Configuration
+          Server Shubtdown Port : 8005
+           HTTP/1.1 Connector Port : 8088
+           User Name : admin
+           Password : 1111
+ 
+      -> Next 
+      -> Java Virtual Machine
+         C:\Program Files\Java\jdk-11.0.14
+      -> Next
+      -> Install
+      -> Finish
+
+  4. 웹 브라우저 실행하고 http://localhost:8088 으로 접속해 본다.
+      - Manager App 버튼 클릭
+        로그인하기 위한 아이디와 비밀번호 질문합니다. 
+        위에서 입력한 admin, 1111을 입력합니다.
+
+  5. Apache Tomcat 9.0 Tomcat9 Properties 창 열고 종료
+  
+  6.  C:\Program Files\Apache Software Foundation\Tomcat 9.0 경로에서 폴더를 클릭 -> 확인
+
+* 이클립스에 서버 설치
+  1. Window -> Show View -> Other -> Server -> Servers 선택
+
+  2. Servers 뷰에서 링크 클릭
+
+  3. Define a New Server 창에서
+     Apache -> Tomcat v9.0 Server 선택 
+    -> Next 
+    -> Browse.. 클릭
+    -> C:\Program Files\Apache Software Foundation\Tomcat 9.0 선택
+    -> Finish
+
+  
+* 프로젝트 만들기
+  1. Window -> Perspective -> Open Perspective -> Other -> Java EE
+
+  2. File -> New -> Dynamic Web Project
+
+  3. Project name: JSP 
+
+     Target runtime : Apache Tomcat 9.0    
+
+   -> Finish
+
+  4. Servers View에서
+     Tomcat v9.0 Server at localhost에서 우클릭
+     -> Add and Remove
+     -> Test 선택
+     -> Add 클릭
+     -> Finish
+
+  
+
+  5.  src/main/webapp 선택 후  File -> New -> Jsp File -> Finish
+      아래의 파일 작성
+
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+ JSP 성공
+</body>
+</html>
+
+
+  6. Sever View에서 실행 아이콘(녹색 원안에 삼각형모양)  클릭 
+
+  7. Console 뷰 확인
+     INFO: 프로토콜 핸들러 ["http-nio-8088"]을(를) 시작합니다.
+     7월 12, 2022 8:35:28 오전 org.apache.catalina.startup.Catalina start
+     INFO: 서버가 [762] 밀리초 내에 시작되었습니다.
+
+
+  8. 브라우저 주소창에 아래와 같이 입력합니다.
+     http://localhost:8088/JSP/NewFile.jsp 
+
+
+  9. "JSP 성공" 나타나면 성공입니다.
+
+
+
+
+@WebServlet(urlPatterns = { "/ex1/_1.login/LifeCycleTest" })
+================[Run As Server 가 나타나지 않는 경우]=================================== 
+
+   프로젝트 우클릭 -> Properties  -> Server -> Tomcat v9.0 Server at localhost 선택
+
+
+===========================[ 서블릿 인식이 안되는 경우]==================================
+  프로젝트 우클릭 -> Targeted Runtimes -> Apache Tomcat v9.0 -> Apply and Close
